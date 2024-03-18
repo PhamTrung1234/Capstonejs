@@ -1,0 +1,47 @@
+@mixin a-style() {
+  color: $color-white-1;
+  text-transform: uppercase;
+  
+  padding: 0 10px 0 0;
+  border-right: 1px solid $color-white-2;
+  font-weight: 500;
+  font-size: 12px;
+  transition: color 0.5s ease-in-out;
+}
+@mixin a-style2() {
+  @include a-style();
+   font-weight: bold;
+ }
+ @mixin nav-show() {
+   .nav-item {
+    
+     z-index: 100;
+     
+    
+     transition: background-color 0.5s 
+     
+    }
+}
+@media screen and (max-width:992px) {
+    header .navbar-nav .nav-item a{
+        border: none;
+    }
+ }
+ $breakpoints: (
+  ssm: 368px,
+  sm: 576px,
+  md: 768px,
+  lg: 991px,
+  xl: 1200px
+);
+
+// Responsive mixin
+@mixin respond-to($breakpoint) {
+  @if map-has-key($breakpoints, $breakpoint) {
+    @media (max-width: map-get($breakpoints, $breakpoint)) {
+      @content;
+    }
+  } @else {
+    @error "Breakpoint `#{$breakpoint}` not found in $breakpoints map.";
+  }
+}
